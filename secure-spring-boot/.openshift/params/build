@@ -1,0 +1,7 @@
+APPLICATION_NAME: secured-spring-boot
+NAMESPACE: secured-spring-boot-build
+SOURCE_REPOSITORY_URL: https://github.com/redhat-cop/container-pipelines.git
+SOURCE_REPOSITORY_REF: master
+APPLICATION_SOURCE_REPO: https://github.com/redhat-cop/spring-rest.git
+APPLICATION_SOURCE_REF: master
+PIPELINE_SCRIPT: Jenkinsfile

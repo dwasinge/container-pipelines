@@ -1,0 +1,46 @@
+sb_application_name: secured-spring-boot
+sb_build_namespace: secured-spring-boot-build
+sb_dev_namespace: secured-spring-boot-dev
+sb_stage_namespace: secured-spring-boot-stage
+sb_prod_namespace: secured-spring-boot-prod
+sb_application_repository_url: "https://github.com/redhat-cop/spring-rest.git"
+sb_application_repository_ref: master
+sb_application_readiness_response: "status.:.UP"
+sb_application_readiness_path: "/health"
+sb_sa_name: "jenkins"
+sb_source_repository_url: "https://github.com/redhat-cop/container-pipelines.git"
+sb_source_repository_ref: master
+sb_pipeline_script: "Jenkinsfile"
+
+openshift_cluster_content:
+- object: projects
+  content:
+  - name: "create environments"
+    file: "{{ inventory_dir }}/../.openshift/projects/projects.yml"
+    action: create
+    tags:
+      - project
+- object: builds
+  content:
+  - name: "deploy build pipeline to dev"
+    template: "{{ inventory_dir }}/../.openshift/templates/build.yml"
+    params: "{{ inventory_dir }}/../.openshift/params/build"
+    tags:
+      - build
+- object: deployments
+  content:
+  - name: "deploy dev environment"
+    template: "{{ inventory_dir }}/../.openshift/templates/deployment.yml"
+    params: "{{ inventory_dir }}/../.openshift/params/dev"
+    tags:
+      - deployment
+  - name: "deply stage environment"
+    template: "{{ inventory_dir }}/../.openshift/templates/deployment.yml"
+    params: "{{ inventory_dir }}/../.openshift/params/stage"
+    tags:
+      - deployment
+  - name: "deply prod environment"
+    template: "{{ inventory_dir }}/../.openshift/templates/deployment.yml"
+    params: "{{ inventory_dir }}/../.openshift/params/prod"
+    tags:
+      - deployment
