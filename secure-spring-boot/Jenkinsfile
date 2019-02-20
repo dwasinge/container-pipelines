@@ -2,7 +2,7 @@ library identifier: "pipeline-library@master",
 retriever: modernSCM(
   [
     $class: "GitSCMSource",
-    remote: "https://github.com/redhat-cop/pipeline-library.git"
+    remote: "https://github.com/dwasinge/pipeline-library.git"
   ]
 )
 
@@ -54,6 +54,28 @@ pipeline {
       steps {
         sh "mvn -B test -f ${POM_FILE}"
       }
+    }
+
+    stage('Code Review') {
+        parallel {
+            stage ('Static Analysis') {
+                steps {
+                  sonarqubeStaticAnalysis(
+                    dependencyCheckReportDir: "target",
+                    dependencyCheckReportFiles: "dependency-check-report.html",
+                    dependencyCheckReportName: "OWASP Dependency Check Report",
+                    dependencyCheckKeepAll: true,
+                    dependencyCheckAlwaysLinkToLastBuild: true,
+                    dependencyCheckAllowMissing: true,
+                    unitTestReportDir: "target/site/jacoco/",
+                    unitTestReportFiles: "index.html",
+                    unitTestReportName: "Jacoco Unit Test Report",
+                    unitTestKeepAll: true,
+                    unitTestAlwaysLinkToLastBuild: false,
+                    unitTestAllowMissing: true)
+                }
+            }
+        }
     }
 
     // Build Container Image using the artifacts produced in previous stages
