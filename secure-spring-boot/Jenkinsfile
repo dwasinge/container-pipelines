@@ -35,6 +35,11 @@ pipeline {
     stage('Print Environment') {
       steps {
           sh 'printenv'
+
+          sh 'echo PROJECT_NAME:  $PROJECT_NAME'
+
+          sh 'ls -la'
+
       }
     }
 
