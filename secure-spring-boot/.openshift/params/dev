@@ -1,5 +1,5 @@
 APPLICATION_NAME: secured-spring-boot
-NAMESPACE: secured-spring-boot-dev
+NAMESPACE: labs-dev-puckboard-demo
 SA_NAME: jenkins
 SA_NAMESPACE: secured-spring-boot-build
 READINESS_RESPONSE: "status.:.UP"

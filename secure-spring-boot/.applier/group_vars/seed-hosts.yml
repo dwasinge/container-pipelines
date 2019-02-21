@@ -13,13 +13,13 @@
 #sb_pipeline_script: "Jenkinsfile"
 
 openshift_cluster_content:
-- object: projects
-  content:
-  - name: "create environments"
-    file: "{{ inventory_dir }}/../.openshift/projects/projects.yml"
-    action: create
-    tags:
-      - project
+#- object: projects
+#  content:
+#  - name: "create environments"
+#    file: "{{ inventory_dir }}/../.openshift/projects/projects.yml"
+#    action: create
+#   tags:
+#      - project
 - object: builds
   content:
   - name: "deploy build pipeline to dev"

@@ -1,5 +1,5 @@
 APPLICATION_NAME: secured-spring-boot
-NAMESPACE: secured-spring-boot-build
+NAMESPACE: labs-ci-cd-puckboard-demo
 SOURCE_REPOSITORY_URL: https://github.com/dwasinge/container-pipelines.git
 SOURCE_REPOSITORY_REF: secure-spring-boot
 CONTEXT_DIR: secure-spring-boot
