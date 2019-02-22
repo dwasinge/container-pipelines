@@ -76,7 +76,7 @@ pipeline {
                 steps {
                   sonarqubeStaticAnalysis(
                     buildServerWebHookName: "jenkins",
-                    buildServerWebHookUrl: "${JENKINS_URL}/sonarqube-webhook/",
+                    buildServerWebHookUrl: "${JENKINS_URL}sonarqube-webhook/",
                     dependencyCheckReportDir: "target",
                     dependencyCheckReportFiles: "dependency-check-report.html",
                     dependencyCheckReportName: "OWASP Dependency Check Report",
